@@ -1,0 +1,206 @@
+{% if msg %}
+<script>
+    alert('{{ msg }}');
+</script>
+{% endif %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>II Semester</title>
+    <style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+#bg{
+    background-size: 1600px 800px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #4CAF50;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:#333;
+  min-width: 135px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+#sem1 {
+  background-color: #ffffff;
+  margin: 100px auto;
+  font-family: Raleway;
+  padding: 40px;
+  width: 60%;
+  min-width: 300px;
+}
+.dropdown-content a {
+  float: none;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #4CAF50;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 80%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+</head>
+<body id="bg" style="background-image: url('{% static "images/img3.jpg" %}')";>
+<div class="topnav">
+  <a href="{% url 'basic' %}">Home</a>
+  <a href="{% url 'home' %}">Student Info</a>
+    <div class="dropdown">
+    <button class="dropbtn">Academic Info
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% url 'sem1' %}">I Semester</a>
+      <a href="{% url 'sem2' %}">II Semester</a>
+      <a href="{% url 'sem3' %}">III Semester</a>
+      <a href="{% url 'sem4' %}">IV Semester</a>
+      <a href="{% url 'sem5' %}">V Semester</a>
+      <a href="{% url 'sem6' %}">VI Semester</a>
+    </div>
+
+  </div>
+  <a href="{% url 'studsrc' %}">Student Details search</a>
+  <a href="{% url 'acasrc' %}">Academics Details search</a>
+    <a href="{% url 'log' %}">logout</a>
+
+</div>
+<form id="sem1" action="/home/" method="post">
+    {% csrf_token %}
+<h2><center>Student Deatils</center></h2></br></br>
+<div style="overflow-x:auto;">
+<table align="center">
+      <th>First Name</th>
+      <th>Last Name</th>
+	  <th>USN </th>
+	  <th>DOB</th>
+      <th>Phone No.</th>
+	  <th>Mode of joining </th>
+	  <th>Gender</th>
+	  <th>Email</th>
+
+	  <tr>
+	  <td> <input type="text" name="fname" maxlength="20" size="10" /></td>
+	  <td> <input type="text" name="lname" maxlength="10" size="10" /></td>
+	  <td><input type="text" name="usn" maxlength="10" size="10" /></td>
+	  <td><input type="text" name="dob" maxlength="10" size="10" /></td>
+	  <td><input type="text" name="phno" maxlength="10" size="10" /></td>
+	  <td><input type="text" name="moj" maxlength="10" size="10" /></td>
+	  <td><input type="text" name="gender" maxlength="6" size="10" /></td>
+	  <td> <input type="text" name="email" maxlength="30" size="30" /></td>
+	  </tr>
+  </table>
+  </br>
+  </br></br>
+  <table align="center">
+   <tr>
+	<td rowspan="3"><strong>Address&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;</strong></td>
+    <td><textarea name="address" rows="3" cols="88"></textarea></td>
+	<td></td>
+    </tr>
+	</table>
+	<table align="center">
+    <tr>
+	<td rowspan="3"><strong>Extra Curriculum Acitivty</strong></td>
+    <td rowspan="3"><textarea name="excurri" rows="3" cols="88"></textarea></td>
+	<td></td>
+    </tr>
+	</table><br><br>
+	<h2><center>Parent Details</center></h2></br></br>
+
+<table align="center">
+      <th>Father Name</th>
+      <th>Phone No.</th>
+	  <th>Occupation </th>
+	  <th>Mather Name</th>
+      <th>Phone No.</th>
+	  <th>Occupation </th>
+
+	  <tr>
+	  <td> <input type="text" name="fathername" maxlength="20" size="10" /></td>
+	  <td> <input type="text" name="fphno" maxlength="10" size="10" /></td>
+	  <td><input type="text" name="foccup" maxlength="10" size="10" /></td>
+	  <td><input type="text" name="mothername" maxlength="10" size="10" /></td>
+	  <td><input type="text" name="mphno" maxlength="10" size="10" /></td>
+	  <td><input type="text" name="moccup" maxlength="10" size="10" /></td>
+	  </tr>
+  </table>
+  </br>
+  </br></br>
+  <br><br>
+
+</div>
+<div style="float:right;">
+      <button type="submit" id="done">Done</button>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,175 @@
+{% if msg %}
+<script>
+    alert('{{ msg }}');
+</script>
+{% endif %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+#bg{
+    background-size: 1600px 800px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+  text-align: center;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #4CAF50;
+}
+#stud {
+  background-color: #ffffff;
+  margin: 100px auto;
+  font-family: Raleway;
+  padding: 40px;
+  width: 60%;
+  min-width: 300px;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:#333;
+  min-width: 135px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #4CAF50;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+</head>
+<body id="bg" style="background-image: url('{% static "images/img3.jpg" %}')";>
+<div class="topnav">
+  <a href="{% url 'basic' %}">Home</a>
+  <a href="{% url 'home' %}">Student Info</a>
+    <div class="dropdown">
+    <button class="dropbtn">Academic Info
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% url 'sem1' %}">I Semester</a>
+      <a href="{% url 'sem2' %}">II Semester</a>
+      <a href="{% url 'sem3' %}">III Semester</a>
+      <a href="{% url 'sem4' %}">IV Semester</a>
+      <a href="{% url 'sem5' %}">V Semester</a>
+      <a href="{% url 'sem6' %}">VI Semester</a>
+    </div>
+
+  </div>
+  <a href="{% url 'studsrc' %}">Student Details search</a>
+  <a href="{% url 'acasrc' %}">Academics Details search</a>
+    <a href="{% url 'log' %}">logout</a>
+
+</div>
+<form id="stud" action="/home/" method="post" >
+  {% csrf_token %}
+<h2>Student Details</h2>{{msg}}
+<div align="center">
+  <label for="fname">&emsp;First Name</label>
+  <label for="lname">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Last Name</label>
+  <label for="usn">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;USN</label>
+  <label for="phno">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Phone Number</label><br>
+  <label id="fn">sfs</label>
+  <input type="text" id="fname" name="fname" value="1000">
+  <input type="text" id="lname" name="lname">
+  <input type="text" id="usn" name="usn">
+  <input type="text" id="phno" name="phno">
+  <br><br>
+
+  <label for="dob">&emsp;&emsp;&emsp;DOB</label>
+  <label for="gender">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Gender</label>
+  <label for="email">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;Email</label>
+  <label for="moj">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Mode of Joinig</label><br>
+  <input type="text" id="dob" name="dob">
+  <input type="text" id="gender" name="gender">
+  <input type="text" id="email" name="email">
+  <input type="text" id="moj" name="moj">
+  <br><br>
+   <label for="address">Address</label><br>
+  <textarea id="address" name="address" rows="3" cols="88"></textarea><br><br>
+  <label for="excurri">Extra Curriculum Activity</label><br>
+  <textarea id="excurri" name="excurri" rows="3" cols="88"></textarea><br><br>
+</div>
+<h2>Parent Details</h2>
+<div align="center">
+  <label for="fathername">Father Name</label>
+  <label for="fphone">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Phone Number</label>
+  <label for="foccupation">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Occupation</label><br>
+  <input type="text" id="fathername" size="28" name="fathername">
+  <input type="text" id="fphone" name="fphone" maxlength="10" size="28">
+  <input type="text" id="foccupation" size="28" name="foccupation">
+  <br><br>
+
+  <label for="mothername">Mother Name</label>
+  <label for="mphone">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;&nbsp;Phone Number</label>
+  <label for="moccupation">&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&nbsp;Occupation</label><br>
+  <input type="text" id="mothername" size="28" name="mothername">
+  <input type="text" id="mphone" name="mphone" maxlength="10" size="28">
+  <input type="text" id="moccupation" size="28" name="moccupation">
+  <br><br><br>
+  <button type="submit" id="submit">Done</button>
+</div>
+  </br></br>
+</form>
+</body>
+</html>

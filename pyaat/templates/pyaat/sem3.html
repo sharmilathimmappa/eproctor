@@ -1,0 +1,284 @@
+{% if msg %}
+<script>
+    alert('{{ msg }}');
+</script>
+{% endif %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>III Semester</title>
+    <style>
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: #333;
+}
+#bg{
+    background-size: 1600px 800px;
+    background-repeat: no-repeat;
+    background-position: top;
+    background-attachment: fixed;
+}
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit;
+  margin: 0;
+}
+
+.navbar a:hover, .dropdown:hover .dropbtn {
+  background-color: #4CAF50;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:#333;
+  min-width: 135px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+#sem1 {
+  background-color: #ffffff;
+  margin: 100px auto;
+  font-family: Raleway;
+  padding: 40px;
+  width: 60%;
+  min-width: 300px;
+}
+.dropdown-content a {
+  float: none;
+  color: white;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #4CAF50;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 80%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+</style>
+</head>
+<body id="bg" style="background-image: url('{% static "images/img3.jpg" %}')";>
+<div class="topnav">
+  <a href="{% url 'basic' %}">Home</a>
+  <a href="{% url 'home' %}">Student Info</a>
+    <div class="dropdown">
+    <button class="dropbtn">Academic Info
+      <i class="fa fa-caret-down"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="{% url 'sem1' %}">I Semester</a>
+      <a href="{% url 'sem2' %}">II Semester</a>
+      <a href="{% url 'sem3' %}">III Semester</a>
+      <a href="{% url 'sem4' %}">IV Semester</a>
+      <a href="{% url 'sem5' %}">V Semester</a>
+      <a href="{% url 'sem6' %}">VI Semester</a>
+    </div>
+
+  </div>
+  <a href="{% url 'studsrc' %}">Student Details search</a>
+  <a href="{% url 'acasrc' %}">Academics Details search</a>
+    <a href="{% url 'log' %}">logout</a>
+
+</div>
+<form id="sem1" action="/dsem3/" method="post">
+    {% csrf_token %}
+<h2><center>III SEMESTER</center></h2></br></br>
+<div style="overflow-x:auto;">
+<table align="center" width="80%">
+      <th>Name <input type="text" name="sname" maxlength="20" size="10" /></th>
+      <th>USN <input type="text" name="usn" maxlength="10" size="10" /></th>
+	  <th>Proctor Name <input type="text" name="pname" maxlength="20" size="10" /></th>
+	  <th>Semester <input type="number" name="sem" maxlength="1" size="10" /></th>
+  </table>
+  </br></br>
+  <table align="center">
+    <tr>
+      <th>SL.NO.</th>
+      <th>Subject Code</th>
+      <th>Course Title</th>
+	  <th>Faculty Name </th>
+      <th>Credits</th>
+      <th>CIE</th>
+      <th>SEE</th>
+      <th>Grade</th>
+
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>18MCA3PCML</td>
+      <td>Machine Learning</td>
+	  <td><input type="text" name="mlfname" maxlength="20" size="10" /></td>
+      <td>4</td>
+      <td><input type="number" name="cieml" maxlength="2" size="10" /></td>
+      <td><input type="number" name="seeml" maxlength="3" size="10" /></td>
+      <td><input type="text" name="grademl" maxlength="1" size="10" /></td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>18MCA3PCJP </td>
+      <td>Programming using Java</td>
+	  <td><input type="text" name="jpfname" maxlength="20" size="10" /></td>
+      <td>4</td>
+      <td><input type="number" name="ciejp" maxlength="2" size="10" /></td>
+      <td><input type="number" name="seejp" maxlength="3" size="10" /></td>
+      <td><input type="text" name="gradejp" maxlength="1" size="10" /></td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>18MCA3PCNW</td>
+      <td>Computer Networks </td>
+	  <td><input type="text" name="nwfname" maxlength="20" size="10" /></td>
+      <td>4</td>
+      <td><input type="number" name="cienw" maxlength="2" size="10" /></td>
+      <td><input type="number" name="seenw" maxlength="3" size="10" /></td>
+      <td><input type="text" name="gradenw" maxlength="1" size="10" /></td>
+    </tr>
+	<tr>
+      <td>4</td>
+      <td><label for="scelec2"></label>
+	<select id="scelec2">
+	  <option value="none">Choose Elective -2 </option>
+	  <option value="18MCA3PECC">18MCA3PECC </option>
+	  <option value="18MCA3PEUI">18MCA3PEUI </option>
+	  <option value="18MCA3PEAS">18MCA3PEAS </option>
+	  <option value="18MCA3PEUP">18MCA3PEUP </option>
+	 </select></td>
+      <td><label for="elec2"></label>
+	<select id="elec2">
+	  <option value="stat">Choose Elective -2 </option>
+	  <option value="Cloud Computing">Cloud Computing </option>
+	  <option value="UI & UX">UI & UX </option>
+	  <option value="Agile Software Development">Agile Software Development </option>
+	  <option value="Unix System Programming
+">Unix System Programming
+ </option>
+	 </select></td>
+	  <td><input type="text" name="elec2fname" maxlength="20" size="10" /></td>
+      <td>4</td>
+      <td><input type="number" name="cieelec2" maxlength="2" size="10" /></td>
+      <td><input type="number" name="seeelec2" maxlength="3" size="10" /></td>
+      <td><input type="text" name="gradeelec2" maxlength="1" size="10" /></td>
+
+    </tr>
+	<tr>
+      <td>5</td>
+      <td><label for="elec3"></label>
+	<select id="elec3">
+	  <option value="none">Choose Elective -3 </option>
+	  <option value="18MCA3PEIS">18MCA3PEIS </option>
+	  <option value="18MCA3PEDM">18MCA3PEDM </option>
+	  <option value="18MCA3PERP">18MCA3PERP </option>
+	  <option value="18MCA3PEOB">18MCA3PEOB </option>
+	 </select></td>
+      <td><label for="scelec3"></label>
+	<select id="scelec3">
+	  <option value="none">Choose Elective -3 </option>
+	  <option value="Management Information Systems">Management Information Systems </option>
+	  <option value="Digital Marketing">Digital Marketing </option>
+	  <option value="Enterprise Resource Planning">Enterprise Resource Planning </option>
+	  <option value="Organizational Behaviour">Organizational Behaviour </option>
+	 </select></td>
+	  <td><input type="text" name="elec3fname" maxlength="20" size="10" /></td>
+      <td>3</td>
+      <td><input type="number" name="cieelec3" maxlength="2" size="10" /></td>
+      <td><input type="number" name="seeelec3" maxlength="3" size="10" /></td>
+      <td><input type="text" name="gradeelec3" maxlength="1" size="10" /></td>
+
+    </tr>
+	<tr>
+      <td>6</td>
+      <td>18MCA3PWM1 </td>
+      <td>Mini Project - I</td>
+	  <td><input type="text" name="m1fname" maxlength="20" size="10" /></td>
+      <td>3</td>
+      <td><input type="number" name="ciem1" maxlength="2" size="10" /></td>
+      <td><input type="number" name="seem1" maxlength="3" size="10" /></td>
+      <td><input type="text" name="gradem1" maxlength="1" size="10" /></td>
+
+    </tr>
+	<tr>
+      <td>7</td>
+      <td>1BMCA3NCMC </td>
+      <td>MOOC Course</td>
+	  <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><input type="text" name="grademc" maxlength="1" size="10" /></td>
+
+    </tr>
+	<tr>
+      <td colspan="4">Total</td>
+      <td>22</td>
+	  <td></td>
+	  <td></td>
+	  <td></td>
+    </tr>
+  </table>
+  </br></br>
+  <table align="center">
+      <th>Number of Credits Earned <input type="number" name="tcr" maxlength="2" size="10" /></th>
+      <th>CGPA <input type="number" name="cgpa" maxlength="5" size="10" /></th>
+      <th>SGPA <input type="number" name="sgpa" maxlength="5" size="10" /></th>
+  </table>
+</div>
+    </br></br>
+    <div style="float:right;">
+      <button type="submit" id="submit">Save</button>
+    </div>
+</form>
+</body>
+</html>
